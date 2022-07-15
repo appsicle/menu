@@ -8,7 +8,7 @@ import "./MenuInputTile.css";
 function MenuInputTile() {
   const [isEdit, setIsEdit] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [name, setName] = useState("Entree");
+  const [headingName, setHeadingName] = useState("Entree");
 
   return (
     <div>
@@ -16,12 +16,12 @@ function MenuInputTile() {
         {isEdit ? (
           <FormInput
             onChange={(event) => {
-              setName(event.target.value);
+              setHeadingName(event.target.value);
             }}
-            placeholder={name}
+            placeholder={headingName}
           />
         ) : (
-          <ListGroupItem>{name}</ListGroupItem>
+          <ListGroupItem>{headingName}</ListGroupItem>
         )}
         <span onClick={() => setIsEdit(!isEdit)}>
           <FaEdit />

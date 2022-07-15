@@ -1,44 +1,51 @@
 import {
-  FormInput,
-  Form,
-  FormGroup,
-  FormTextarea,
+  Card,
+  CardHeader,
+  CardTitle,
+  CardImg,
+  CardBody,
+  CardFooter,
   Button,
-  Collapse,
 } from "shards-react";
 import { useState } from "react";
 import { ListGroup, ListGroupItem } from "shards-react";
 import { FaEdit, FaList } from "react-icons/fa";
+import SubMenuInputTileForm from "./SubMenuInputTileForm";
 import "./MenuInputTile.css";
 
 function MenuInputTile() {
   const [isEdit, setIsEdit] = useState(false);
-  const [name, setName] = useState("");
+  const [items, setItems] = useState([]);
+
+  const createCard = (name, description, price) => {
+    const cardObj = {
+      name,
+      description,
+      price,
+    };
+    setItems([...items, cardObj]);
+  };
 
   return (
     <div>
+      <div>
+        {items.length
+          ? items.map((item) => (
+              <Card>
+                <CardBody>
+                <CardTitle>{item.name}</CardTitle>
+                  <p>{item.description}</p>
+                  <p>{item.price}</p>
+                </CardBody>
+              </Card>
+            ))
+          : null}
+      </div>
       <div className="menu-input-tile">
         {isEdit ? (
-          <Form>
-            <FormGroup>
-              <label htmlFor="#username">Name</label>
-              <FormInput id="#username" placeholder="Username" />
-            </FormGroup>
-            <FormGroup>
-              <label htmlFor="#username">Description</label>
-              <FormTextarea
-                onChange={() => {
-                  console.log("ad");
-                }}
-              />
-            </FormGroup>
-            <FormGroup>
-              <label htmlFor="#username">Price</label>
-              <FormInput id="#username" placeholder="Username" />
-            </FormGroup>
-          </Form>
+          <SubMenuInputTileForm onSave={createCard} />
         ) : (
-          <ListGroupItem>{name}</ListGroupItem>
+          <ListGroupItem>blank</ListGroupItem>
         )}
         <span onClick={() => setIsEdit(!isEdit)}>
           <FaEdit />
