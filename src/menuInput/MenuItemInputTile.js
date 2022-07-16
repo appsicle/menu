@@ -1,11 +1,11 @@
-import { FormInput, Button, Collapse } from "shards-react";
+import { FormInput, Collapse } from "shards-react";
 import { useState } from "react";
-import { ListGroup, ListGroupItem } from "shards-react";
+import { ListGroupItem } from "shards-react";
 import { FaEdit, FaList } from "react-icons/fa";
-import SubMenuInputTile from './SubMenuInputTile';
-import "./MenuInputTile.css";
+import SubMenuInputTile from './SubMenuItemInputTile';
+import "./MenuItemInputTile.css";
 
-function MenuInputTile() {
+function MenuInputTile({ publishMenuItems }) {
   const [isEdit, setIsEdit] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [headingName, setHeadingName] = useState("Entree");
@@ -31,7 +31,7 @@ function MenuInputTile() {
         </span>
       </div>
       <Collapse open={isOpen}>
-        <SubMenuInputTile />
+        <SubMenuInputTile headingName={headingName} publishMenuItems={publishMenuItems} />
       </Collapse>
     </div>
   );

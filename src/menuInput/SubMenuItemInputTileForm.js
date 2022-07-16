@@ -5,10 +5,9 @@ import {
   FormGroup,
   FormTextarea,
   Button,
-  Collapse,
 } from "shards-react";
 
-export default function SubMenuInputTileForm({ onSave }) {
+export default function SubMenuInputTileForm({ publishMenuItems }) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -16,7 +15,7 @@ export default function SubMenuInputTileForm({ onSave }) {
   const isFormFilled = name && description && price;
 
   const onSubmitForm = () => {
-    onSave(name, description, price);
+    publishMenuItems(name, description, price);
     setName("");
     setDescription("");
     setPrice("");

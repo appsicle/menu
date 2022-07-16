@@ -1,0 +1,44 @@
+.food-card {
+  &-container {
+    display: flex;
+    max-height: 110px;
+    max-width: 420px;
+    border: 1px solid rgb(231, 231, 231);
+    border-radius: 4px;
+    justify-content: space-between;
+  }
+  &-text-container {
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+  }
+  &-title {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 22px;
+    letter-spacing: -0.04ch;
+    color: rgb(25, 25, 25);
+    margin: 0px;
+    padding: 0px;
+  }
+  &-description {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0ch;
+    text-transform: none;
+    color: rgb(118, 118, 118);
+    margin: 0px;
+    padding: 0px;
+  }
+  &-price {
+    margin: 0;
+    line-height: 20px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  &-image {
+    object-fit: fill;
+    max-width: 110px;
+  }
+}
