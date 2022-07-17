@@ -1,0 +1,17 @@
+.menu-input {
+  &-tile {
+    display: flex;
+  }
+  &-tab-field {
+    // border: none;
+    background-color: transparent;
+    resize: none;
+    outline: none;
+    &-container {
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      border-color: red;
+      border-color: 1px solid black;
+    }
+  }
+}

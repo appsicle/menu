@@ -5,23 +5,64 @@ import MenuInput from "./menuInput/MenuItemInputContainer";
 import MenuRender from "./menuRender/MenuRender";
 import { useState } from "react";
 import FoodCard from "./components/FoodCard";
+import DragAndDropContainer from "./components/DragAndDropContainer";
+import { Button } from "shards-react";
+import { arrayMove } from "@dnd-kit/sortable";
+import { findNextId, indexOfId } from "./utils";
+
+const initialHeader = {
+  id: 1,
+  name: "Untitled Item",
+};
 
 function App() {
   const [menuItems, setMenuItems] = useState([]);
+  const [headerItems, setHeaderItems] = useState([initialHeader]);
 
   const publishMenuItems = (menuItem) => {
     setMenuItems([...menuItems, menuItem]);
-    console.log(menuItems);
   };
+
+  const addHeader = () => {
+    const id = findNextId(headerItems);
+    const newObj = {
+      id,
+      name: "",
+    };
+    setHeaderItems([...headerItems, newObj]);
+  };
+
+  function handleDragEnd(event) {
+    const { active, over } = event;
+    if (active.id !== over.id) {
+      setHeaderItems((items) => {
+        const oldIndex = indexOfId(active.id, items);
+        const newIndex = indexOfId(over.id, items);
+        return arrayMove(items, oldIndex, newIndex);
+      });
+    }
+  }
+
+  function handleSetName(id, newName) {
+    const idx = indexOfId(id, headerItems);
+    const copy = [...headerItems];
+    copy[idx].name = newName;
+    setHeaderItems(copy);
+  }
 
   return (
     <>
       <header></header>
       <body>
-       <FoodCard title={"Dan Dan Noodle"} description={"A Szechuan specialty, Dan Dan Noodles is a fan favorite. The crispy, spicy, and numbing peppercorn elevates the flavor to a whole 'nother level."} price={"$12.00"} imgSrc={"https://picsum.photos/200"}/>
-        <div className="main-container">
-          <MenuInput publishMenuItems={publishMenuItems} />
-          <MenuRender menuItems={menuItems} />
+        <div className="main-menu-input-container">
+          {headerItems.length ? (
+            <DragAndDropContainer
+              setName={handleSetName}
+              items={headerItems}
+              handleDragEnd={handleDragEnd}
+            />
+          ) : null}
+          <Button onClick={addHeader}>Add new</Button>
         </div>
       </body>
     </>

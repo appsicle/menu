@@ -7,7 +7,7 @@ import { useState } from "react";
 import { ListGroupItem } from "shards-react";
 import { FaEdit } from "react-icons/fa";
 import SubMenuInputTileForm from "./SubMenuItemInputTileForm";
-import "./MenuItemInputTile.css";
+import "./MenuItemInputTile.scss";
 import FoodCard from "../components/FoodCard";
 
 function SubMenuInputTile({ headingName, publishMenuItems }) {

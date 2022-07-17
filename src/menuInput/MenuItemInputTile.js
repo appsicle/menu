@@ -1,38 +1,27 @@
 import { FormInput, Collapse } from "shards-react";
 import { useState } from "react";
-import { ListGroupItem } from "shards-react";
+import { ListGroupItem, Button } from "shards-react";
 import { FaEdit, FaList } from "react-icons/fa";
-import SubMenuInputTile from './SubMenuItemInputTile';
-import "./MenuItemInputTile.css";
+import SubMenuInputTile from "./SubMenuItemInputTile";
+import "./MenuItemInputTile.scss";
+import { Nav, NavItem, NavLink } from "shards-react";
 
-function MenuInputTile({ publishMenuItems }) {
-  const [isEdit, setIsEdit] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
-  const [headingName, setHeadingName] = useState("Entree");
+function MenuInputTile({ id, name, setName, publishMenuItems }) {
+  // const [isEdit, setIsEdit] = useState(false);
+  // const [isOpen, setIsOpen] = useState(true);
+  // const [headingName, setHeadingName] = useState(name);
 
   return (
     <div>
-      <div className="menu-input-tile">
-        {isEdit ? (
-          <FormInput
-            onChange={(event) => {
-              setHeadingName(event.target.value);
-            }}
-            placeholder={headingName}
-          />
-        ) : (
-          <ListGroupItem>{headingName}</ListGroupItem>
-        )}
-        <span onClick={() => setIsEdit(!isEdit)}>
-          <FaEdit />
-        </span>
-        <span onClick={() => setIsOpen(!isOpen)}>
-          <FaList />
-        </span>
+      <div className="menu-input-tab-field-container">
+        <input
+          className="menu-input-tab-field"
+          onChange={(event) => {
+            setName(id, event.target.value);
+          }}
+          placeholder={name}
+        />
       </div>
-      <Collapse open={isOpen}>
-        <SubMenuInputTile headingName={headingName} publishMenuItems={publishMenuItems} />
-      </Collapse>
     </div>
   );
 }
